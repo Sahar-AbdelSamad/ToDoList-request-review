@@ -30,14 +30,16 @@ export class ToDoList {
   addtask = () => {
     this.inputTask.addEventListener('keyup', (event) => {
       if (event.keyCode === 13) {
-        const newTask = {
-          description: this.inputTask.value,
-          index: this.tasks.length + 1,
-          completed: false,
-        };
-        const newTaskAdded = this.tasks.concat(newTask);
-        this.localStorage(newTaskAdded);
-        this.inputTask.value = '';
+        if(this.inputTask.value) {
+          const newTask = {
+            description: this.inputTask.value,
+            index: this.tasks.length + 1,
+            completed: false,
+          };
+          const newTaskAdded = this.tasks.concat(newTask);
+          this.localStorage(newTaskAdded);
+          this.inputTask.value = '';
+        }
       }
     });
   };

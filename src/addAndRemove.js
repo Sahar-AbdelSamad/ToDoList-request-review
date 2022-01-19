@@ -30,7 +30,7 @@ export class ToDoList {
   addtask = () => {
     this.inputTask.addEventListener('keyup', (event) => {
       if (event.keyCode === 13) {
-        if(this.inputTask.value) {
+        if (this.inputTask.value) {
           const newTask = {
             description: this.inputTask.value,
             index: this.tasks.length + 1,

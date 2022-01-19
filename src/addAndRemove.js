@@ -65,24 +65,28 @@ export class ToDoList {
           // Save updated Task
           editInput.addEventListener('keyup', (event) => {
             if (event.keyCode === 13) {
-              const li = document.createElement('li');
-              li.textContent = editInput.value;
-              parent.innerHTML = '<i class="fas fa-ellipsis-v dots"></i><input type="checkbox" class="box">';
-              parent.className = 'listItem';
-              parent.appendChild(li);
-              const newTaskUpdated = this.tasks.map((item) => ({
-                description: item.description,
-                index: item.index,
-                completed: item.completed,
-              }));
-              newTaskUpdated[parent.id].description = editInput.value;
-              this.localStorage(newTaskUpdated);
+              this.saveUpdatedTask(parent, editInput);
             }
           });
         }
       });
     });
   };
+
+  saveUpdatedTask = (parent, editInput) => {
+    const li = document.createElement('li');
+    li.textContent = editInput.value;
+    parent.innerHTML = '<i class="fas fa-ellipsis-v dots"></i><input type="checkbox" class="box">';
+    parent.className = 'listItem';
+    parent.appendChild(li);
+    const newTaskUpdated = this.tasks.map((item) => ({
+      description: item.description,
+      index: item.index,
+      completed: item.completed,
+    }));
+    newTaskUpdated[parent.id].description = editInput.value;
+    this.localStorage(newTaskUpdated);
+  }
 
   removeTask = (index) => {
     const beforRemovedItem = this.tasks.slice(0, index);
